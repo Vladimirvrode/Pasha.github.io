@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TresherTreu - Магазин эксклюзивных ручек</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#0c2e5a',secondary:'#d4af37'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.hero-section {
+background-image: linear-gradient(to right, rgba(12, 46, 90, 0.9), rgba(12, 46, 90, 0.6), rgba(12, 46, 90, 0.2), rgba(12, 46, 90, 0)), url('https://readdy.ai/api/search-image?query=luxury%20fountain%20pen%20on%20a%20dark%20blue%20background%20with%20gold%20accents%2C%20elegant%20design%2C%20professional%20product%20photography%2C%20soft%20lighting%2C%20minimalist%20composition%2C%20high-end%20stationery%2C%20premium%20writing%20instrument%2C%20detailed%20craftsmanship&width=1280&height=720&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.custom-checkbox {
+appearance: none;
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #d4af37;
+border-radius: 4px;
+outline: none;
+cursor: pointer;
+position: relative;
+}
+.custom-checkbox:checked {
+background-color: #0c2e5a;
+border-color: #0c2e5a;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid #d4af37;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-radio {
+appearance: none;
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #d4af37;
+border-radius: 50%;
+outline: none;
+cursor: pointer;
+position: relative;
+}
+.custom-radio:checked {
+border-color: #0c2e5a;
+}
+.custom-radio:checked::after {
+content: '';
+position: absolute;
+left: 3px;
+top: 3px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background-color: #0c2e5a;
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 16px;
+width: 16px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #0c2e5a;
+}
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+.range-slider {
+-webkit-appearance: none;
+width: 100%;
+height: 4px;
+border-radius: 5px;
+background: #d3d3d3;
+outline: none;
+}
+.range-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: #0c2e5a;
+cursor: pointer;
+border: 2px solid #d4af37;
+}
+.range-slider::-moz-range-thumb {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: #0c2e5a;
+cursor: pointer;
+border: 2px solid #d4af37;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance: textfield;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- Хедер -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+<div class="container mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center">
+<a href="#" class="text-3xl font-['Pacifico'] text-primary">TresherTreu</a>
+<nav class="hidden md:flex ml-10">
+<a href="#hero" class="mx-3 text-gray-700 hover:text-primary font-medium">Главная</a>
+<a href="#categories" class="mx-3 text-gray-700 hover:text-primary font-medium">Каталог</a>
+<a href="#about" class="mx-3 text-gray-700 hover:text-primary font-medium">О бренде</a>
+<a href="#reviews" class="mx-3 text-gray-700 hover:text-primary font-medium">Блог</a>
+<a href="#footer" class="mx-3 text-gray-700 hover:text-primary font-medium">Контакты</a>
+</nav>
+</div>
+<div class="flex items-center">
+<div class="mr-4 w-10 h-10 flex items-center justify-center">
+<i class="ri-search-line text-gray-700 hover:text-primary cursor-pointer"></i>
+</div>
+<div class="mr-4 w-10 h-10 flex items-center justify-center">
+<i class="ri-user-line text-gray-700 hover:text-primary cursor-pointer"></i>
+</div>
+<div class="relative w-10 h-10 flex items-center justify-center">
+<i onclick="openCart()" class="ri-shopping-cart-line text-gray-700 hover:text-primary cursor-pointer"></i>
+<span id="cartCount" class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+</div>
+<button onclick="openAuthModal()" class="ml-6 hidden md:block border-2 border-secondary text-primary hover:bg-primary hover:text-white transition-colors px-4 py-2 !rounded-button whitespace-nowrap">Войти / Регистрация</button>
+<div class="md:hidden w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line text-gray-700 hover:text-primary cursor-pointer"></i>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero секция -->
+<section id="hero" class="hero-section text-white py-20">
+<div class="container mx-auto px-4 w-full">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-bold mb-4">Искусство письма в каждой детали</h1>
+<p class="text-lg mb-8">Откройте для себя коллекцию эксклюзивных ручек, созданных с любовью к традициям и инновациям. Каждая ручка TresherTreu — это произведение искусства.</p>
+<div class="flex flex-wrap gap-4">
+<button onclick="scrollToSection('categories')" class="bg-primary border-2 border-secondary text-white px-6 py-3 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap inline-block">Открыть коллекцию</button>
+<button onclick="scrollToSection('about')" class="bg-transparent border-2 border-secondary text-white px-6 py-3 !rounded-button hover:bg-white hover:bg-opacity-10 transition-colors whitespace-nowrap inline-block">Узнать больше</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Категории -->
+<section id="categories" class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Наши категории</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=elegant%20fountain%20pen%20with%20gold%20nib%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20luxury%20writing%20instrument%2C%20high-end%20stationery%2C%20minimalist%20composition&width=400&height=300&seq=2&orientation=landscape" alt="Перьевые ручки" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Перьевые ручки</h3>
+<p class="text-gray-600 mb-4">Классика элегантности и утонченности для ценителей традиций</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=premium%20ballpoint%20pen%20with%20metallic%20body%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20luxury%20writing%20instrument%2C%20high-end%20stationery%2C%20minimalist%20composition&width=400&height=300&seq=3&orientation=landscape" alt="Шариковые ручки" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Шариковые ручки</h3>
+<p class="text-gray-600 mb-4">Надежность и комфорт для повседневного использования</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=luxury%20rollerball%20pen%20with%20smooth%20design%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20luxury%20writing%20instrument%2C%20high-end%20stationery%2C%20minimalist%20composition&width=400&height=300&seq=4&orientation=landscape" alt="Роллеры" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Роллеры</h3>
+<p class="text-gray-600 mb-4">Идеальное сочетание гладкости письма и современного дизайна</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=limited%20edition%20luxury%20pen%20with%20unique%20design%20elements%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20luxury%20writing%20instrument%2C%20high-end%20stationery%2C%20minimalist%20composition&width=400&height=300&seq=5&orientation=landscape" alt="Лимитированные серии" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Лимитированные серии</h3>
+<p class="text-gray-600 mb-4">Эксклюзивные коллекции для особых случаев и коллекционеров</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=luxury%20mechanical%20pencil%20with%20sleek%20metal%20design%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument%2C%20minimalist%20composition&width=400&height=300&seq=11&orientation=landscape" alt="Механические карандаши" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Механические карандаши</h3>
+<p class="text-gray-600 mb-4">Точность и элегантность для технического рисования и черчения</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=luxury%20multifunction%20pen%20with%20multiple%20ink%20colors%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument%2C%20minimalist%20composition&width=400&height=300&seq=12&orientation=landscape" alt="Мультисистемные ручки" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Мультисистемные ручки</h3>
+<p class="text-gray-600 mb-4">Универсальные инструменты с несколькими стержнями</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=luxury%20calligraphy%20pen%20set%20with%20ornate%20nibs%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument%2C%20minimalist%20composition&width=400&height=300&seq=13&orientation=landscape" alt="Каллиграфические ручки" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Каллиграфические ручки</h3>
+<p class="text-gray-600 mb-4">Специальные инструменты для искусства каллиграфии</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=luxury%20sketch%20pen%20with%20fine%20tip%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument%2C%20minimalist%20composition&width=400&height=300&seq=14&orientation=landscape" alt="Ручки для скетчинга" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Ручки для скетчинга</h3>
+<p class="text-gray-600 mb-4">Профессиональные инструменты для художников и дизайнеров</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<button id="loadMoreBtn" class="bg-primary border-2 border-secondary text-white px-6 py-3 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">Весь каталог</button>
+<div id="pagination" class="mt-8 flex justify-center items-center gap-2 hidden">
+<button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50" id="prevPage" disabled>Назад</button>
+<span id="currentPage" class="mx-4">1</span>
+<button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100" id="nextPage">Вперед</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Популярные товары -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-4">Популярные товары</h2>
+<p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">Откройте для себя наши бестселлеры — ручки, которые выбирают ценители качества и стиля по всему миру</p>
+<div class="relative">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20black%20fountain%20pen%20with%20gold%20accents%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument&width=300&height=300&seq=6&orientation=squarish" alt="Перьевая ручка Monarch" class="w-full h-64 object-cover object-top">
+<button class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow hover:bg-gray-100">
+<i class="ri-heart-line text-gray-600"></i>
+</button>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-semibold mb-2">Перьевая ручка Monarch</h3>
+<div class="flex justify-between items-center mb-4">
+<span class="text-primary font-bold text-xl">12 500 ₽</span>
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+</div>
+<button onclick="addToCart(this)" class="w-full bg-primary border-2 border-secondary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap inline-block text-center">В корзину</button>
+</div>
+</div>
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20blue%20rollerball%20pen%20with%20silver%20accents%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument&width=300&height=300&seq=7&orientation=squarish" alt="Роллер Sapphire" class="w-full h-64 object-cover object-top">
+<button class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow hover:bg-gray-100">
+<i class="ri-heart-line text-gray-600"></i>
+</button>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-semibold mb-2">Роллер Sapphire</h3>
+<div class="flex justify-between items-center mb-4">
+<span class="text-primary font-bold text-xl">8 900 ₽</span>
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-yellow-400"></i>
+</div>
+</div>
+<button onclick="addToCart(this)" class="w-full bg-primary border-2 border-secondary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap inline-block text-center">В корзину</button>
+</div>
+</div>
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20wooden%20ballpoint%20pen%20with%20bronze%20accents%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument&width=300&height=300&seq=8&orientation=squarish" alt="Шариковая ручка Timber" class="w-full h-64 object-cover object-top">
+<button class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow hover:bg-gray-100">
+<i class="ri-heart-line text-gray-600"></i>
+</button>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-semibold mb-2">Шариковая ручка Timber</h3>
+<div class="flex justify-between items-center mb-4">
+<span class="text-primary font-bold text-xl">7 200 ₽</span>
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+</div>
+<button onclick="addToCart(this)" class="w-full bg-primary border-2 border-secondary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap inline-block text-center">В корзину</button>
+</div>
+</div>
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=luxury%20limited%20edition%20fountain%20pen%20with%20red%20and%20gold%20accents%20on%20a%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship%2C%20premium%20writing%20instrument&width=300&height=300&seq=9&orientation=squarish" alt="Перьевая ручка Imperial (лимитированная серия)" class="w-full h-64 object-cover object-top">
+<button class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow hover:bg-gray-100">
+<i class="ri-heart-line text-gray-600"></i>
+</button>
+<div class="absolute top-3 left-3 bg-secondary text-primary text-xs font-bold px-2 py-1 rounded">Лимитированная</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-semibold mb-2">Перьевая ручка Imperial</h3>
+<div class="flex justify-between items-center mb-4">
+<span class="text-primary font-bold text-xl">24 900 ₽</span>
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+</div>
+<button onclick="addToCart(this)" class="w-full bg-primary border-2 border-secondary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap inline-block text-center">В корзину</button>
+</div>
+</div>
+</div>
+<button class="absolute -left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 z-10">
+<i class="ri-arrow-left-s-line text-gray-700"></i>
+</button>
+<button class="absolute -right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 z-10">
+<i class="ri-arrow-right-s-line text-gray-700"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- О бренде -->
+<section id="about" class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=luxury%20pen%20workshop%20with%20craftsman%20working%20on%20fountain%20pen%2C%20elegant%20workspace%2C%20traditional%20craftsmanship%2C%20attention%20to%20detail%2C%20warm%20lighting%2C%20professional%20photography%2C%20artisan%20creating%20premium%20writing%20instruments&width=600&height=400&seq=10&orientation=landscape" alt="О бренде TresherTreu" class="w-full h-auto rounded-lg shadow-lg">
+</div>
+<div class="md:w-1/2">
+<h2 class="text-3xl font-bold mb-6">Философия TresherTreu</h2>
+<p class="text-gray-700 mb-4">Более 25 лет мы создаем ручки, которые становятся не просто инструментом для письма, но настоящими произведениями искусства и верными спутниками своих владельцев.</p>
+<p class="text-gray-700 mb-6">Каждая ручка TresherTreu — это сочетание традиционного мастерства, инновационных технологий и безупречного дизайна. Мы верим, что процесс письма должен приносить удовольствие и вдохновение.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-transparent border-2 border-secondary text-primary px-5 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">История бренда</button>
+<button class="bg-transparent border-2 border-secondary text-primary px-5 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors flex items-center whitespace-nowrap inline-block">
+<i class="ri-play-circle-line mr-2"></i> Смотреть видео
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Отзывы клиентов -->
+<section id="reviews" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">Отзывы наших клиентов</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white p-6 rounded-lg shadow-md">
+<div class="flex mb-4">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-700 mb-6">"Перьевая ручка Monarch превзошла все мои ожидания. Великолепный баланс, идеальное перо и потрясающий дизайн. Теперь это мой постоянный спутник на важных встречах и переговорах."</p>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<div>
+<h4 class="font-semibold">Александр Воронцов</h4>
+<p class="text-sm text-gray-600">Генеральный директор, Москва</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md">
+<div class="flex mb-4">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-700 mb-6">"Роллер Sapphire стал для меня идеальным выбором для ежедневных заметок. Плавное письмо, эргономичный дизайн и потрясающий цвет корпуса. Отдельное спасибо за быструю доставку и красивую упаковку!"</p>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<div>
+<h4 class="font-semibold">Екатерина Соловьева</h4>
+<p class="text-sm text-gray-600">Дизайнер, Санкт-Петербург</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md">
+<div class="flex mb-4">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-700 mb-6">"Подарил жене на юбилей перьевую ручку Imperial из лимитированной серии. Она в восторге! Качество исполнения, внимание к деталям и элегантный дизайн делают эту ручку настоящим произведением искусства."</p>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+<i class="ri-user-line text-gray-600"></i>
+</div>
+<div>
+<h4 class="font-semibold">Дмитрий Новиков</h4>
+<p class="text-sm text-gray-600">Предприниматель, Казань</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-10">
+<button class="bg-transparent border-2 border-secondary text-primary px-6 py-3 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Оставить отзыв</button>
+</div>
+</div>
+</section>
+<!-- Подписка на новости -->
+<section class="py-16 bg-primary text-white">
+<div class="container mx-auto px-4">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="text-3xl font-bold mb-4">Подпишитесь на наши новости</h2>
+<p class="mb-8">Будьте в курсе новых коллекций, специальных предложений и эксклюзивных событий. Подписчики получают доступ к закрытым распродажам.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<input type="email" placeholder="Ваш email" class="px-4 py-3 rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-secondary text-gray-800 w-full sm:w-auto flex-grow max-w-md">
+<button type="submit" onclick="window.location.href='/subscribe'" class="bg-secondary text-primary font-bold px-6 py-3 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">Подписаться</button>
+</div>
+<p class="text-sm mt-4 text-gray-300">Нажимая на кнопку, вы соглашаетесь с нашей <a href="#" class="underline hover:text-secondary">политикой конфиденциальности</a></p>
+</div>
+</div>
+</section>
+<!-- Футер -->
+<footer id="footer" class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<h3 class="text-2xl font-['Pacifico'] mb-6">TresherTreu</h3>
+<p class="text-gray-400 mb-6">Создаем эксклюзивные ручки с 1997 года. Наша миссия — возрождение культуры письма в цифровую эпоху.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Каталог</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Перьевые ручки</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Шариковые ручки</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Роллеры</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Лимитированные серии</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Аксессуары</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Подарочные наборы</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Информация</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">О бренде</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Блог</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Доставка и оплата</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Гарантия и возврат</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Контакты</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Контакты</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+<i class="ri-map-pin-line text-secondary"></i>
+</div>
+<span class="text-gray-400">Москва, ул. Тверская, 15, ТЦ "Галерея"</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+<i class="ri-phone-line text-secondary"></i>
+</div>
+<span class="text-gray-400">+7 (495) 123-45-67</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+<i class="ri-mail-line text-secondary"></i>
+</div>
+<span class="text-gray-400">info@treshertreupen.ru</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+<i class="ri-time-line text-secondary"></i>
+</div>
+<span class="text-gray-400">Пн-Вс: 10:00 - 21:00</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 mb-4 md:mb-0">© 2025 TresherTreu. Все права защищены.</p>
+<div class="flex items-center space-x-4">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-visa-fill text-gray-400 text-2xl"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-mastercard-fill text-gray-400 text-2xl"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-paypal-fill text-gray-400 text-2xl"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-apple-fill text-gray-400 text-2xl"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script id="navigation-script">
+function scrollToSection(sectionId) {
+const section = document.getElementById(sectionId);
+if (section) {
+section.scrollIntoView({
+behavior: 'smooth'
+});
+}
+}
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+document.querySelector(this.getAttribute('href')).scrollIntoView({
+behavior: 'smooth'
+});
+});
+});
+const mobileMenuButton = document.querySelector('.ri-menu-line');
+const mobileMenu = document.createElement('div');
+mobileMenu.className = 'fixed inset-0 bg-gray-900 bg-opacity-90 z-50 flex flex-col items-center justify-center transform transition-transform duration-300 translate-x-full';
+mobileMenu.innerHTML = `
+<button class="absolute top-5 right-5 text-white">
+<i class="ri-close-line text-2xl"></i>
+</button>
+<nav class="flex flex-col items-center space-y-6">
+<a href="#" class="text-white text-xl hover:text-secondary transition-colors">Главная</a>
+<a href="#" class="text-white text-xl hover:text-secondary transition-colors">Каталог</a>
+<a href="#" class="text-white text-xl hover:text-secondary transition-colors">О бренде</a>
+<a href="#" class="text-white text-xl hover:text-secondary transition-colors">Блог</a>
+<a href="#" class="text-white text-xl hover:text-secondary transition-colors">Контакты</a>
+</nav>
+<div class="mt-10">
+<button class="bg-transparent border-2 border-secondary text-white px-6 py-2 !rounded-button hover:bg-secondary hover:text-primary transition-colors whitespace-nowrap">Войти / Регистрация</button>
+</div>
+`;
+document.body.appendChild(mobileMenu);
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.remove('translate-x-full');
+document.body.style.overflow = 'hidden';
+});
+const closeButton = mobileMenu.querySelector('.ri-close-line').parentElement;
+closeButton.addEventListener('click', function() {
+mobileMenu.classList.add('translate-x-full');
+document.body.style.overflow = '';
+});
+});
+</script>
+<script id="catalog-pagination-script">
+document.addEventListener('DOMContentLoaded', function() {
+const loadMoreBtn = document.getElementById('loadMoreBtn');
+const pagination = document.getElementById('pagination');
+const prevPageBtn = document.getElementById('prevPage');
+const nextPageBtn = document.getElementById('nextPage');
+const currentPageSpan = document.getElementById('currentPage');
+const productGrid = document.querySelector('.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4');
+let currentPage = 1;
+const productsPerPage = 8;
+const totalProducts = 24;
+const totalPages = Math.ceil(totalProducts / productsPerPage);
+let additionalProductsLoaded = false;
+const additionalProducts = [
+{
+name: "Перьевая ручка Elite",
+image: "https://readdy.ai/api/search-image?query=luxury%20fountain%20pen%20with%20platinum%20finish%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=15&orientation=landscape",
+description: "Элегантная перьевая ручка с платиновым покрытием"
+},
+{
+name: "Ручка-роллер Crystal",
+image: "https://readdy.ai/api/search-image?query=crystal%20decorated%20luxury%20rollerball%20pen%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=16&orientation=landscape",
+description: "Роллер с кристальными элементами декора"
+},
+{
+name: "Шариковая ручка Carbon",
+image: "https://readdy.ai/api/search-image?query=carbon%20fiber%20luxury%20ballpoint%20pen%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=17&orientation=landscape",
+description: "Современная ручка с карбоновым корпусом"
+},
+{
+name: "Перьевая ручка Classic",
+image: "https://readdy.ai/api/search-image?query=classic%20design%20luxury%20fountain%20pen%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=18&orientation=landscape",
+description: "Классическая перьевая ручка в традиционном стиле"
+},
+{
+name: "Ручка-роллер Modern",
+image: "https://readdy.ai/api/search-image?query=modern%20design%20luxury%20rollerball%20pen%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=19&orientation=landscape",
+description: "Современный роллер с минималистичным дизайном"
+},
+{
+name: "Шариковая ручка Premium",
+image: "https://readdy.ai/api/search-image?query=premium%20luxury%20ballpoint%20pen%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=20&orientation=landscape",
+description: "Премиальная шариковая ручка бизнес-класса"
+},
+{
+name: "Перьевая ручка Royal",
+image: "https://readdy.ai/api/search-image?query=royal%20design%20luxury%20fountain%20pen%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=21&orientation=landscape",
+description: "Роскошная перьевая ручка с королевским дизайном"
+},
+{
+name: "Ручка-роллер Tech",
+image: "https://readdy.ai/api/search-image?query=modern%20tech%20luxury%20rollerball%20pen%20on%20dark%20blue%20background%2C%20professional%20product%20photography%2C%20detailed%20craftsmanship&width=400&height=300&seq=22&orientation=landscape",
+description: "Технологичный роллер с инновационным механизмом"
+}
+];
+function createProductCard(product) {
+return `
+<div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow opacity-0 transform translate-y-4" style="transition: opacity 0.5s ease, transform 0.5s ease">
+<div class="h-48 overflow-hidden">
+<img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">${product.name}</h3>
+<p class="text-gray-600 mb-4">${product.description}</p>
+<button class="bg-transparent border-2 border-secondary text-primary px-4 py-2 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap inline-block">Перейти в категорию</button>
+</div>
+</div>
+`;
+}
+function showPage(page) {
+currentPage = page;
+currentPageSpan.textContent = page;
+prevPageBtn.disabled = page === 1;
+nextPageBtn.disabled = page === totalPages;
+const start = (page - 1) * productsPerPage;
+const end = Math.min(start + productsPerPage, additionalProducts.length);
+const newProducts = additionalProducts.slice(start, end);
+productGrid.style.opacity = '0';
+productGrid.style.transform = 'translateY(20px)';
+setTimeout(() => {
+const newContent = newProducts.map(createProductCard).join('');
+productGrid.innerHTML = newContent;
+setTimeout(() => {
+productGrid.style.opacity = '1';
+productGrid.style.transform = 'translateY(0)';
+const cards = productGrid.querySelectorAll('.opacity-0');
+cards.forEach((card, index) => {
+setTimeout(() => {
+card.classList.remove('opacity-0');
+card.style.transform = 'translateY(0)';
+}, index * 100);
+});
+}, 50);
+}, 300);
+}
+loadMoreBtn.addEventListener('click', function() {
+if (!additionalProductsLoaded) {
+loadMoreBtn.style.display = 'none';
+pagination.classList.remove('hidden');
+additionalProductsLoaded = true;
+showPage(1);
+}
+});
+prevPageBtn.addEventListener('click', () => {
+if (currentPage > 1) {
+showPage(currentPage - 1);
+}
+});
+nextPageBtn.addEventListener('click', () => {
+if (currentPage < totalPages) {
+showPage(currentPage + 1);
+}
+});
+});
+</script>
+<script id="product-carousel-script">
+document.addEventListener('DOMContentLoaded', function() {
+const prevButton = document.querySelector('.ri-arrow-left-s-line').parentElement;
+const nextButton = document.querySelector('.ri-arrow-right-s-line').parentElement;
+const productGrid = document.querySelector('.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4');
+// Имитация функциональности карусели
+prevButton.addEventListener('click', function() {
+productGrid.style.transition = 'transform 0.3s ease';
+productGrid.style.transform = 'translateX(10px)';
+setTimeout(() => {
+productGrid.style.transition = '';
+productGrid.style.transform = '';
+}, 300);
+});
+nextButton.addEventListener('click', function() {
+productGrid.style.transition = 'transform 0.3s ease';
+productGrid.style.transform = 'translateX(-10px)';
+setTimeout(() => {
+productGrid.style.transition = '';
+productGrid.style.transform = '';
+}, 300);
+});
+});
+</script>
+<script id="wishlist-script">
+document.addEventListener('DOMContentLoaded', function() {
+const wishlistButtons = document.querySelectorAll('.ri-heart-line');
+wishlistButtons.forEach(button => {
+button.parentElement.addEventListener('click', function() {
+if (button.classList.contains('ri-heart-line')) {
+button.classList.remove('ri-heart-line');
+button.classList.add('ri-heart-fill');
+button.classList.add('text-red-500');
+} else {
+button.classList.remove('ri-heart-fill');
+button.classList.remove('text-red-500');
+button.classList.add('ri-heart-line');
+}
+});
+});
+});
+</script>
+<!-- Cart Modal -->
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+  <div class="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-lg transform transition-transform duration-300 translate-x-full">
+    <div class="p-4 border-b flex justify-between items-center">
+      <h3 class="text-xl font-semibold">Корзина</h3>
+      <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700">
+        <i class="ri-close-line text-2xl"></i>
+      </button>
+    </div>
+    <div id="cartItems" class="p-4 space-y-4 overflow-y-auto" style="max-height: calc(100vh - 200px);">
+      <!-- Cart items will be added here -->
+    </div>
+    <div class="p-4 border-t">
+      <div class="flex justify-between mb-4">
+        <span class="font-semibold">Итого:</span>
+        <span id="cartTotal" class="font-bold">0 ₽</span>
+      </div>
+      <button class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-colors">Оформить заказ</button>
+    </div>
+  </div>
+</div>
+<!-- Auth Modal -->
+<div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+  <div class="bg-white rounded-lg w-full max-w-md p-6 transform transition-transform duration-300 scale-95">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-xl font-semibold">Регистрация</h3>
+      <button onclick="closeAuthModal()" class="text-gray-500 hover:text-gray-700">
+        <i class="ri-close-line text-2xl"></i>
+      </button>
+    </div>
+    <form id="authForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Пароль</label>
+        <input type="password" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+      </div>
+      <button type="submit" class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-colors">Зарегистрироваться</button>
+    </form>
+    <p class="text-center mt-4 text-sm text-gray-600">
+      Уже есть аккаунт? <a href="#" class="text-primary hover:underline">Войти</a>
+    </p>
+  </div>
+</div>
+<!-- Notification -->
+<div id="notification" class="fixed top-4 right-4 bg-white rounded-lg shadow-lg p-4 transform transition-transform duration-300 translate-y-[-100%] opacity-0 z-50 flex items-center">
+  <i class="ri-checkbox-circle-line text-green-500 text-xl mr-2"></i>
+  <span>Товар добавлен в корзину</span>
+</div>
+<script id="cart-script">
+document.addEventListener('DOMContentLoaded', function() {
+  let cart = [];
+  let cartTotal = 0;
+  window.addToCart = function(button) {
+    const productCard = button.closest('.bg-white');
+    const productName = productCard.querySelector('h3').textContent;
+    const priceText = productCard.querySelector('.text-primary').textContent;
+    const price = parseInt(priceText.replace(/[^\d]/g, ''));
+    
+    cart.push({
+      name: productName,
+      price: price
+    });
+    
+    updateCart();
+    showNotification();
+  }
+  function updateCart() {
+    const cartItems = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    
+    cartItems.innerHTML = cart.map(item => `
+      <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+        <span>${item.name}</span>
+        <span class="font-semibold">${item.price} ₽</span>
+      </div>
+    `).join('');
+    
+    cartCount.textContent = cart.length;
+    cartTotal.textContent = cart.reduce((sum, item) => sum + item.price, 0) + ' ₽';
+  }
+  function showNotification() {
+    const notification = document.getElementById('notification');
+    notification.style.transform = 'translateY(0)';
+    notification.style.opacity = '1';
+    
+    setTimeout(() => {
+      notification.style.transform = 'translateY(-100%)';
+      notification.style.opacity = '0';
+    }, 3000);
+  }
+  window.openCart = function() {
+    const cartModal = document.getElementById('cartModal');
+    cartModal.classList.remove('hidden');
+    cartModal.querySelector('.transform').classList.remove('translate-x-full');
+  }
+  window.closeCart = function() {
+    const cartModal = document.getElementById('cartModal');
+    cartModal.querySelector('.transform').classList.add('translate-x-full');
+    setTimeout(() => cartModal.classList.add('hidden'), 300);
+  }
+  window.openAuthModal = function() {
+    const authModal = document.getElementById('authModal');
+    authModal.classList.remove('hidden');
+    setTimeout(() => authModal.querySelector('.transform').classList.remove('scale-95'), 10);
+  }
+  window.closeAuthModal = function() {
+    const authModal = document.getElementById('authModal');
+    authModal.querySelector('.transform').classList.add('scale-95');
+    setTimeout(() => authModal.classList.add('hidden'), 300);
+  }
+  document.getElementById('authForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Add your registration logic here
+    closeAuthModal();
+  });
+});
+</script>
+</body>
+</html>
